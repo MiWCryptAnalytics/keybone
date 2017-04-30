@@ -25,7 +25,7 @@ def read_version():
     return finder.version
 
 
-dependencies = [x.split('==')[0] for x in open('requirements.txt').readlines()]
+dependencies = [x.split('==')[0] for x in open('requirements.txt', 'r')]
 
 setup(
     name='keybone',
