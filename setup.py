@@ -5,11 +5,6 @@ import ast
 import os
 from setuptools import setup, find_packages
 
-
-local_file = lambda *f: \
-    open(os.path.join(os.path.dirname(__file__), *f), 'rb').read()
-
-
 class VersionFinder(ast.NodeVisitor):
     VARIABLE_NAME = 'version'
 
@@ -30,7 +25,7 @@ def read_version():
     return finder.version
 
 
-dependencies = filter(bool, map(bytes.strip, local_file('requirements.txt').splitlines()))
+dependencies = [x.split('==')[0] for x in open('requirements.txt').readlines()]
 
 setup(
     name='keybone',
